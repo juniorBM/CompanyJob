@@ -18,8 +18,6 @@ class CreateCompaniesTable extends Migration
             $table->string('name', 100);
             $table->string('email', 60)->unique();
             $table->string('website');
-            $table->string('logo');
-            $table->string('password', 64);
             $table->timestamps();
             $table->softDeletes();
         });

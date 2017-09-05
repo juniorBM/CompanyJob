@@ -9,7 +9,10 @@ class JobsController extends Controller
 {
     public function index()
     {
-        $jobs = Job::with('company')->get();
+        // $jobs = Job::with('company')->get();
+        $jobs = Job::select('jobs.id', 'title', 'description', 'local', 'remote', 'company_id', 'name')
+            ->join('companies', 'companies.id', 'jobs.company_id')->get();
+
         return response()->json($jobs);
     }
 
@@ -24,5 +27,14 @@ class JobsController extends Controller
             ], 404);
         }
         return response()->json($job);
+    }
+
+    public function store(Request $request)
+    {
+        $job = new Job();
+        $job->fill($request->all());
+        $job->save();
+
+        return response()->json($job, 201);
     }
 }

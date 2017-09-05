@@ -18,8 +18,7 @@ class CreateJobsTable extends Migration
             $table->string('title');
             $table->longText('description');
             $table->string('local');
-            $table->enum('remote', ['yes', 'no']);
-            $table->integer('type');
+            $table->string('remote');
             $table->integer('company_id')->unsigned();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->timestamps();
